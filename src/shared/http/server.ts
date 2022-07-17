@@ -6,12 +6,13 @@ import { errors } from 'celebrate';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
+import uploadConfig from '@config/upload';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use('/files', express.static(uploadConfig.directory));
 //Habilita as rotas definidas em src/shared/http/routes/index.ts
 app.use(routes);
 
