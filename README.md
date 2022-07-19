@@ -29,7 +29,7 @@ https://typeorm.io/
 
 * Para poder utilizar o 'uuid_generate_v4()' no bd é necessário abrir o postegres no dbeaver, clicar com o botão da direita do mouse no bd que ira usar, escolher a opção criar-extensão e habilitar o uuid-ossp
 
-## COMANDOS CLI
+## Comandos CLI
 
 * Comando para criar uma migração com o TypeORM:
 yarn typeorm migration:create -n NOMEDAMIGRAÇÂO
@@ -37,3 +37,6 @@ yarn typeorm migration:create -n NOMEDAMIGRAÇÂO
 * Comando para executar migração no TypeORM:
 yarn typeorm migration:run
 
+## Diagrama do fluxo no TypeORM:
+
+![diagrama fluxo typeorm](https://github.com/bolatechproducoes/api-vendas/blob/master/diagramas/Sequencia%20de%20criacao%20TypeORM%20em%20TS.png)
