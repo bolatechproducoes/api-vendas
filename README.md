@@ -37,6 +37,12 @@ yarn typeorm migration:create -n NOMEDAMIGRAÇÂO
 * Comando para executar migração no TypeORM:
 yarn typeorm migration:run
 
+* Comando para desfazer uma migração:
+yarn typeorm migration:revert
+
+* Comando para mostrar as misgrações:
+yarn typeorm migration:show
+
 ## Diagrama do fluxo no TypeORM:
 
 ![diagrama fluxo typeorm](https://github.com/bolatechproducoes/api-vendas/blob/master/diagramas/Sequencia%20de%20criacao%20TypeORM%20em%20TS.png)

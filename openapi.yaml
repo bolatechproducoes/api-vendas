@@ -785,6 +785,21 @@ components:
           type: string
         updated_at:
           type: string
+    orders_products:
+      type: object
+      properties:
+        id:
+          type: string
+        price:
+          type: string
+        quantity:
+          type: string
+        order_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
   securitySchemes:
     auth:
       type: http
