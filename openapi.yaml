@@ -796,6 +796,8 @@ components:
           type: string
         order_id:
           type: string
+        product_id:
+          type: string
         created_at:
           type: string
         updated_at:
