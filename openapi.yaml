@@ -774,6 +774,17 @@ components:
           type: string
         updated_at:
           type: string
+    orders:
+      type: object
+      properties:
+        id:
+          type: string
+        customer_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
   securitySchemes:
     auth:
       type: http
