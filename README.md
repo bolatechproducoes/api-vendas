@@ -40,7 +40,7 @@ yarn typeorm migration:run
 * Comando para desfazer uma migração:
 yarn typeorm migration:revert
 
-* Comando para mostrar as misgrações:
+* Comando para mostrar as migrações:
 yarn typeorm migration:show
 
 ## Diagrama do fluxo no TypeORM:
