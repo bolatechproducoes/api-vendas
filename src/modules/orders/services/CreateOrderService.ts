@@ -9,6 +9,7 @@ interface IProduct {
   id: string;
   quantity: number;
 }
+
 interface IRequest {
   customer_id: string;
   products: IProduct[];
