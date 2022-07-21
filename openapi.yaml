@@ -714,6 +714,151 @@ paths:
           $ref: "#/components/responses/ErrorResponse"
         500:
           $ref: "#/components/responses/ServerErrorResponse"
+  /orders:
+    post:
+      summary: Cadastra um pedido de produtos de um cliente
+      description: "Através desse endpoint é cadastrado um pedido de cliente com os produtos"
+      security:
+      - auth: []
+      tags:
+      - "ORDERS"
+      requestBody:
+        description: "Forneça o id do cliente e os ids dos produtos para criar um pedido"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      quantity:
+                        type: number
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                  order_products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        product_id:
+                          type: string
+                        price:
+                          type: string
+                        quantity:
+                          type: number
+                        order_id:
+                          type: string
+                        id:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /orders/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      security:
+      - auth: []
+      summary: Consulta um pedido cadastrados na aplicação pelo ID
+      tags:
+      - "ORDERS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  order_products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        product_id:
+                          type: string
+                        price:
+                          type: string
+                        quantity:
+                          type: number
+                        order_id:
+                          type: string
+                        id:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                  customer:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
 components:
   schemas:
     users:
