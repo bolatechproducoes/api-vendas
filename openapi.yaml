@@ -395,20 +395,39 @@ paths:
           content:
             aplication/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-                    email:
-                      type: string
-                    created_at:
-                      type: string
-                    updated_at:
-                      type: string
+                type: object
+                properties:
+                  from:
+                    type: number
+                  to:
+                    type: number
+                  per_page:
+                    type: number
+                  total:
+                    type: number
+                  current_page:
+                    type: number
+                  prev_page:
+                    type: number
+                  next_page:
+                    type: number
+                  last_page:
+                    type: number
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        email:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
         400:
           $ref: "#/components/responses/BadRequestResponse"
         401:
@@ -589,14 +608,14 @@ paths:
                       type: string
                     name:
                       type: string
-                    email:
+                    price:
                       type: string
+                    quantity:
+                      type: number
                     created_at:
                       type: string
                     updated_at:
                       type: string
-        400:
-          $ref: "#/components/responses/BadRequestResponse"
         401:
           $ref: "#/components/responses/UnauthorizedResponse"
         404:
