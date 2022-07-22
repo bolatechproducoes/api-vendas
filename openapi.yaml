@@ -53,8 +53,6 @@ paths:
                         type: string
                       email:
                         type: string
-                      password:
-                        type: string
                       avatar:
                         type: string
                       created_at:
@@ -98,8 +96,6 @@ paths:
                       type: string
                     email:
                       type: string
-                    password:
-                      type: string
                     id:
                       type: string
                     created_at:
@@ -134,13 +130,13 @@ paths:
                       type: string
                     email:
                       type: string
-                    password:
-                      type: string
                     avatar:
                       type: string
                     created_at:
                       type: string
                     updated_at:
+                      type: string
+                    avatar_url:
                       type: string
         400:
           $ref: "#/components/responses/BadRequestResponse"
@@ -202,8 +198,6 @@ paths:
                       type: string
                     email:
                       type: string
-                    password:
-                      type: string
                     avatar:
                       type: string
                     created_at:
@@ -257,8 +251,6 @@ paths:
                     name:
                       type: string
                     email:
-                      type: string
-                    password:
                       type: string
                     avatar:
                       type: string
