@@ -4,6 +4,14 @@
 ### Para baixar/clonar o projeto:
 git clone https://github.com/bolatechproducoes/api-vendas.git .
 
+* Para rodar a api:
+1. Executar o container do Postgres, configurar o bd apivendas e instalar a extensão do uuid.
+2. Executar o comando: yarn
+3. Executar as migrações das tabelas.
+4. Executar o container do Redis.
+5. Executar o comando: yarn dev
+* Você pode testar a api utilizando o Swagger executando o arquivo openapi.yaml com a extensão: "OpenApi(Swagger)" do VsCode (ou no próprio Swagger) ou configurar e utilizar o Insomnia ou PostMan.
+
 ## PostgreSQL
 
 * Comando para executar o container postgres a primeira vez:
@@ -14,8 +22,24 @@ docker run --name postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 * Rodar o comando de migrações do typeorm:
 yarn typeorm migration:run
 
-*Comando para iniciar o container quando reiniciar o pc:
+* Comando para iniciar o container quando reiniciar o pc:
 docker start postgres
+
+## REDIS
+
+Server para implementar cache de consultas no bd
+
+* Comando para instalar as dependencias do redis no projeto:
+yarn add redis ioredis
+
+* Comando para instalar a tipagem dos pacotes:
+yarn add -D @types/redis @types/ioredis
+
+* Comando para executar o container do redis a primeira vez:
+docker run --name redis -p 6379:6379 -d -t redis:alpine
+
+* Comando para iniciar o container quando reiniciar o pc:
+docker start redis
 
 ## TypeORM
 
