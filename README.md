@@ -41,6 +41,43 @@ docker run --name redis -p 6379:6379 -d -t redis:alpine
 * Comando para iniciar o container quando reiniciar o pc:
 docker start redis
 
+* RedisInsight é um client para acessar os dados salvos no cache do Redis.
+(MUDOU BASTANTE E FOI SUBSTITUIDO NO CURSO)
+
+* Comando para executar o container do RedisInsight a primeira vez:
+docker run --name redis-client -v redisinsight:/db -p 8001:8001 -d -t redislabs/redisinsight:latest
+(MUDOU BASTANTE E FOI SUBSTITUIDO NO CURSO)
+
+#### Alternativas ao RedisInsight:
+
+1. **Another Redis Desktop Manager:**
+https://github.com/qishibo/AnotherRedisDesktopManager
+* Configuração para acessar o container em localhost:
+![configuração de acesso another redis](https://github.com/bolatechproducoes/api-vendas/blob/master/diagramas/another-redis-config-connection.png)
+
+* Comando para instalar no Ubuntu:
+sudo snap install another-redis-desktop-manager
+
+2. **Utilizar o terminal para acessar o container:**
+* Comando para acessar o terminal do container redis:
+docker exec -it redis sh
+
+* Comando para acessar a CLI do Redis:
+redis-cli
+
+* Comando para criar uma chave com valor:
+set NOMEDACHAVE NOMEDOVALOR
+
+* Comando para acessar um registro:
+get NOMEDACHAVE
+
+* Comando para deletar uma chave:
+del NOMEDACHAVE
+
+* Comando para deletar varias chaves:
+del [NOMEDEUMACHAVE NOMEDEOUTRACHAVE]
+
+
 ## TypeORM
 
 https://typeorm.io/
