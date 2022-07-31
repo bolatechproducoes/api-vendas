@@ -33,7 +33,7 @@ class CreateSessionsService {
     }
 
     //Cria o token utilizando o jwt (recebe um obj de payload, uma hash de criptografia e um obj de config)
-    const token = sign({}, authConfig.jwt.secret, {
+    const token = sign({}, authConfig.jwt.secret as string, {
       subject: user.id,
       expiresIn: authConfig.jwt.expiresIn,
     });
