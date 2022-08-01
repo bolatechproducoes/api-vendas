@@ -12,6 +12,7 @@
 5. Alterar os arquivos ```.env.example``` e ```ormconfig.example.json``` para: ```.env``` e ```ormconfig.json``` e configurar as variaveis de ambiente destes arquivos de acordo com as suas configurações.
 6. Executar o comando: ```yarn dev```
 * Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens.
+* Você pode criar uma build de produção com o babel utilizando o comando ```yarn build```, para testar/utilizar a build você deve alterar os caminhos do arquivo ```ormconfig.json``` trocando ```src/``` por ```dist/``` e o final dos arquivos de ```.ts``` para ```.js```. O comando para executar a build de produção do projeto é ```node dist/shared/http/server.js```. Lembre-se de adicionar sua url de produção no arquivo openapi.yaml para poder testa-la em produção.
 
 ## PostgreSQL
 
@@ -112,6 +113,9 @@ https://typeorm.io/
 
 * Comando para mostrar as migrações:
 ```yarn typeorm migration:show```
+
+* Comando para rodar as migrações no servidor de produção:
+```./node_modules/.bin/typeorm migration:run```
 
 ## Diagrama do fluxo no TypeORM:
 
