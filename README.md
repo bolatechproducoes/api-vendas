@@ -5,10 +5,10 @@
 ```git clone https://github.com/bolatechproducoes/api-vendas.git .```
 
 * Para rodar a api:
-1. Executar os containers do Postgres e do Redis, configurar o bd apivendas e instalar a extensão do uuid no postgres.
+1. Executar o container do [Postgres](https://github.com/bolatechproducoes/api-vendas#postgresql), configurar o bd apivendas e instalar a extensão do uuid no postgres.
 2. Executar o comando: ```yarn```
-3. Executar as migrações das tabelas.
-4. Executar o container do Redis.
+3. Executar as [migrações das tabelas](https://github.com/bolatechproducoes/api-vendas#comandos-cli).
+4. Executar o container do [Redis](https://github.com/bolatechproducoes/api-vendas#redis).
 5. Alterar os arquivos ```.env.example``` e ```ormconfig.example.json``` para: ```.env``` e ```ormconfig.json``` e configurar as variaveis de ambiente destes arquivos de acordo com as suas configurações.
 6. Executar o comando: ```yarn dev```
 * Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens.
