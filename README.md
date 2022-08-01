@@ -1,5 +1,5 @@
 # API-Vendas
-#### Repositório do código do [Curso de TypeORM com TypeScript e PostgrSQL](https://www.udemy.com/course/api-restful-de-vendas/) do professor [Jorge Aluizio](https://www.udemy.com/user/jorge-aluizio-alves-de-souza/) na [Udemy](https://www.udemy.com/)
+#### Repositório do código desenvolvido no [Curso de TypeORM com TypeScript e PostgrSQL](https://www.udemy.com/course/api-restful-de-vendas/) do professor [Jorge Aluizio](https://www.udemy.com/user/jorge-aluizio-alves-de-souza/) na [Udemy](https://www.udemy.com/)
 
 ### Para baixar/clonar o projeto:
 ```git clone https://github.com/bolatechproducoes/api-vendas.git .```
