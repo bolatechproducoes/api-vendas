@@ -28,7 +28,7 @@
 ```docker start postgres```
 
 * Comando para rodar o container PostgreSQL em produção:
-```docker run --name postgresql -e POSTGRESQL_USERNAME=your-user-name -e POSTGRESQL_PASSWORD=your-password -e POSTGRESQL_DATABASE=your-database-name -p 5432:5432 -d bitnami/postgresql:latest```
+```docker run --name postgresql -e POSTGRESQL_USERNAME=your-user-name -e POSTGRESQL_PASSWORD=your-password -e POSTGRESQL_DATABASE=your-database-name -p 5432:5432 -d --restart=unless-stopped bitnami/postgresql:latest```
 (é uma boa prática alterar a porta padrão do bd em produção(-p outrovalor:5432))
 
 ## REDIS
@@ -48,7 +48,7 @@ Server para implementar cache de consultas no bd
 ```docker start redis```
 
 * Comando para executar o container Redis em produção:
-```docker run --name redis -e REDIS_PASSWORD=your-password -p 6379:6379 -d bitnami/redis:latest```
+```docker run --name redis -e REDIS_PASSWORD=your-password -p 6379:6379 -d --restart=unless-stopped bitnami/redis:latest```
 (é uma boa prática alterar a porta padrão do bd em produção(-p outrovalor:6379))
 
 * RedisInsight é um client para acessar os dados salvos no cache do Redis.
