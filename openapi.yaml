@@ -156,10 +156,13 @@ paths:
       requestBody:
         description: "Arquivo de imagem"
         content:
-          application/octet-stream:
+          multipart/form-data:
             schema:
-              type: string
-              format: binary
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
       responses:
         200:
           description: "Sucesso"
