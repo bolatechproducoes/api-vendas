@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import { IRequestCreateOrder } from '../domain/models/IRequestCreateOrder';
 import { IOrdersRepository } from '../domain/repositories/IOrdersRepository';
 import { IOrder } from '../domain/models/IOrder';
-import { ICustomersRepository } from '@modules/customers/domain/repositories/ICustomersRepository';
-import { IProductsRepository } from '@modules/products/domain/repositories/IProductsRepository';
+import { ICustomersRepository } from '../../../modules/customers/domain/repositories/ICustomersRepository';
+import { IProductsRepository } from '../../../modules/products/domain/repositories/IProductsRepository';
 
 @injectable()
 class CreateOrderService {

@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import redisCache from '@shared/cache/RedisCache';
+import redisCache from '../../../shared/cache/RedisCache';
 import { IProductsRepository } from '../domain/repositories/IProductsRepository';
 import { IProduct } from '../domain/models/IProduct';
 

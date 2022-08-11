@@ -1,9 +1,9 @@
 import { getRepository, In, Repository } from 'typeorm';
-import { IProductsRepository } from '@modules/products/domain/repositories/IProductsRepository';
+import { IProductsRepository } from '../../../domain/repositories/IProductsRepository';
 import Product from '../entities/Product';
-import { IFindProducts } from '@modules/products/domain/models/IFindProducts';
-import { ICreateProduct } from '@modules/products/domain/models/ICreateProduct';
-import { IUpdateStockProduct } from '@modules/products/domain/models/IUpdateStockProduct';
+import { IFindProducts } from '../../../domain/models/IFindProducts';
+import { ICreateProduct } from '../../../domain/models/ICreateProduct';
+import { IUpdateStockProduct } from '../../../domain/models/IUpdateStockProduct';
 
 class ProductsRepository implements IProductsRepository {
   private ormRepository: Repository<Product>;

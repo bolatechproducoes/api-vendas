@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
-import redisCache from '@shared/cache/RedisCache';
-import AppError from '@shared/errors/AppError';
+import redisCache from '../../../shared/cache/RedisCache';
+import AppError from '../../../shared/errors/AppError';
 import { ICreateProduct } from '../domain/models/ICreateProduct';
 import { IProductsRepository } from '../domain/repositories/IProductsRepository';
 import { IProduct } from '../domain/models/IProduct';

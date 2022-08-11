@@ -6,11 +6,6 @@
     "emitDecoratorMetadata": true,
     "module": "commonjs",
     "rootDir": "./",
-    "paths": {
-      "@config/*": ["./src/config/*"],
-      "@modules/*": ["./src/modules/*"],
-      "@shared/*": ["./src/shared/*"]
-    },
     "types": ["jest", "node"],
     "resolveJsonModule": true,
     "allowJs": true,

@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import path from 'path';
-import EtherealMail from '@config/mail/EtherealMail';
-import SESMail from '@config/mail/SESMail';
-import mailConfig from '@config/mail/mail';
+import EtherealMail from '../../../config/mail/EtherealMail';
+import SESMail from '../../../config/mail/SESMail';
+import mailConfig from '../../../config/mail/mail';
 import { ISendForgotPasswordEmail } from '../domain/models/ISendForgotPasswordEmail';
 import { IUsersRepository } from '../domain/repositories/IUsersRepository';
 import { IUserTokensRepository } from '../domain/repositories/IUserTokensRepository';

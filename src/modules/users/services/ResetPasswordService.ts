@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import { hash } from 'bcryptjs';
 import { isAfter, addHours } from 'date-fns';
 import { IResetPassword } from '../domain/models/IResetPassword';

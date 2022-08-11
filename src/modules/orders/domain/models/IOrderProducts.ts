@@ -1,5 +1,5 @@
 import { IOrder } from './IOrder';
-import { IProduct } from '@modules/products/domain/models/IProduct';
+import { IProduct } from '../../../../modules/products/domain/models/IProduct';
 
 export interface IOrderProducts {
   id: string;

@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import productsRoutes from '@modules/products/infra/http/routes/products.routes';
-import usersRoutes from '@modules/users/infra/http/routes/users.routes';
-import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
-import passwordRouter from '@modules/users/infra/http/routes/password.routes';
-import profileRouter from '@modules/users/infra/http/routes/profile.routes';
-import customersRoutes from '@modules/customers/infra/http/routes/customers.routes';
-import ordersRoutes from '@modules/orders/infra/http/routes/orders.routes';
+import productsRoutes from '../../../../modules/products/infra/http/routes/products.routes';
+import usersRoutes from '../../../../modules/users/infra/http/routes/users.routes';
+import sessionsRouter from '../../../../modules/users/infra/http/routes/sessions.routes';
+import passwordRouter from '../../../../modules/users/infra/http/routes/password.routes';
+import profileRouter from '../../../../modules/users/infra/http/routes/profile.routes';
+import customersRoutes from '../../../../modules/customers/infra/http/routes/customers.routes';
+import ordersRoutes from '../../../../modules/orders/infra/http/routes/orders.routes';
 
 const routes = Router();
 

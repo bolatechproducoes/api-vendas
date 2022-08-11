@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import { compare } from 'bcryptjs';
 import { sign, Secret } from 'jsonwebtoken';
-import authConfig from '@config/auth';
+import authConfig from '../../../config/auth';
 import { ICreateSession } from '../domain/models/ICreateSession';
 import { IUserAuthenticated } from '../domain/models/IUserAuthenticated';
 import { IUsersRepository } from '../domain/repositories/IUsersRepository';

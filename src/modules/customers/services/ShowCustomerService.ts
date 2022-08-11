@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import Customer from '../infra/typeorm/entities/Customer';
 import { IShowCustomer } from '../domain/models/IShowCustomer';
 import { ICustomersRepository } from '../domain/repositories/ICustomersRepository';
