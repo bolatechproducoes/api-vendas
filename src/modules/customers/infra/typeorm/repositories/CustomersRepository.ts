@@ -1,5 +1,5 @@
-import { ICreateCustomer } from '@modules/customers/domain/models/ICreateCustomer';
-import { ICustomersRepository } from '@modules/customers/domain/repositories/ICustomersRepository';
+import { ICreateCustomer } from '../../../domain/models/ICreateCustomer';
+import { ICustomersRepository } from '../../../domain/repositories/ICustomersRepository';
 import { getRepository, Repository } from 'typeorm';
 import Customer from '../entities/Customer';
 
