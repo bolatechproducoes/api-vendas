@@ -11,11 +11,7 @@
       "@modules/*": ["./src/modules/*"],
       "@shared/*": ["./src/shared/*"]
     },
-    "typeRoots": [
-      "@types",
-      ".node_modules/@types"
-    ],
-    "types": ["node"],
+    "types": ["jest", "node"],
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": "dist",
@@ -25,5 +21,5 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
-  }
+  },
 }
