@@ -29,6 +29,8 @@ services:
   redis:
     image: 'bitnami/redis:latest'
     container_name: apivendas-redis
+    ports:
+      - "6379:6379"
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
 
