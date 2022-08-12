@@ -104,6 +104,8 @@ paths:
                       type: string
         400:
           $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
         404:
           $ref: "#/components/responses/ErrorResponse"
         500:

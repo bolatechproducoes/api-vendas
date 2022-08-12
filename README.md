@@ -4,15 +4,28 @@
 ### Para baixar/clonar o projeto:
 ```git clone https://github.com/bolatechproducoes/api-vendas.git .```
 
-* Para rodar a api:
+* Para rodar o projeto pelo docker-compose:
+
+1. Depois de clonar o projeto executar no terminal na pasta do projeto o comando: ```chmod +x .docker/entrypoint.sh```
+2. Renomear o arquivo ```ormconfig.example.docker-compose.json``` para ```ormconfig.json```
+3. Renomear o arquivo ```.env.example.docker-compose``` para ```.env```
+4. Rodar no  terminal na pasta do projeto o comando: ```docker-compose up``` para subir os containers e executar a aplicação.
+5. A api estará rodando em ```http://localhost:3333```
+
+* Para rodar a api no seu sistema sem utilizar o docker-compose:
+
 1. Executar o container do [Postgres](https://github.com/bolatechproducoes/api-vendas#postgresql), configurar o bd apivendas e instalar a extensão do uuid no postgres.
 2. Executar o comando: ```yarn```
 3. Executar as [migrações das tabelas](https://github.com/bolatechproducoes/api-vendas#comandos-cli).
 4. Executar o container do [Redis](https://github.com/bolatechproducoes/api-vendas#redis).
-5. Alterar os arquivos ```.env.example``` e ```ormconfig.example.json``` para: ```.env``` e ```ormconfig.json``` e configurar as variaveis de ambiente destes arquivos de acordo com as suas configurações.
+5. Alterar os arquivos ```.env.example``` e ```ormconfig.example.json``` para: ```.env``` e ```ormconfig.json```.
 6. Executar o comando: ```yarn dev```
-* Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens.
-* Você pode criar uma build de produção com o babel utilizando o comando ```yarn build```, para testar/utilizar a build você deve alterar os caminhos do arquivo ```ormconfig.json``` trocando ```src/``` por ```dist/``` e o final dos arquivos de ```.ts``` para ```.js```. O comando para executar a build de produção do projeto é ```node dist/shared/infra/http/server.js```. Lembre-se de adicionar sua url de produção no arquivo openapi.yaml para poder testa-la em produção.
+7. A api estará rodando em ```http://localhost:3333```
+
+## Como testar a api
+
+* Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens. (Lembre-se de adicionar sua url de produção no arquivo openapi.yaml para poder testa-la em produção)
+* Você pode criar uma build de produção com o babel utilizando o comando ```yarn build```, para testar/utilizar a build você deve alterar os caminhos do arquivo ```ormconfig.json``` trocando ```src/``` por ```dist/``` e o final dos arquivos de ```.ts``` para ```.js```. O comando para executar a build de produção do projeto é ```node dist/shared/infra/http/server.js```.
 
 ## PostgreSQL
 
