@@ -4,8 +4,8 @@ import { ICreateProduct } from '../models/ICreateProduct';
 import { IUpdateStockProduct } from '../models/IUpdateStockProduct';
 
 export interface IProductsRepository {
-  findByName(name: string): Promise<IProduct | undefined>;
-  findById(id: string): Promise<IProduct | undefined>;
+  findByName(name: string): Promise<IProduct | null>;
+  findById(id: string): Promise<IProduct | null>;
   findAll(): Promise<IProduct[]>;
   findAllByIds(products: IFindProducts[]): Promise<IProduct[]>;
   create(data: ICreateProduct): Promise<IProduct>;

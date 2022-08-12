@@ -380,32 +380,53 @@ paths:
           $ref: "#/components/responses/ErrorResponse"
         500:
           $ref: "#/components/responses/ServerErrorResponse"
+  /customers?page={page}&limit={limit}:
     get:
       security:
       - auth: []
       summary: Consulta todos os clientes cadastrados na aplicação
       tags:
       - "CUSTOMERS"
+      parameters:
+      - name: page
+        in: path
+        schema:
+          type: number
+        required: true
+      - name: limit
+        in: path
+        schema:
+          type: number
+        required: true
       responses:
         200:
           description: "Sucesso"
           content:
             aplication/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-                    email:
-                      type: string
-                    created_at:
-                      type: string
-                    updated_at:
-                      type: string
+                type: object
+                properties:
+                  per_page:
+                    type: number
+                  total:
+                    type: number
+                  current_page:
+                    type: number
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        email:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
         400:
           $ref: "#/components/responses/BadRequestResponse"
         401:
