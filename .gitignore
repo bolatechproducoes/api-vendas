@@ -12,3 +12,5 @@ uploads/*
 !uploads/.gitkeep
 
 anotações.txt
+
+.docker/dbdata
