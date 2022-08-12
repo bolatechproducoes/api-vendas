@@ -10,7 +10,11 @@
 2. Renomear o arquivo ```ormconfig.example.docker-compose.json``` para ```ormconfig.json```
 3. Renomear o arquivo ```.env.example.docker-compose``` para ```.env```
 4. Rodar no  terminal na pasta do projeto o comando: ```docker-compose up``` para subir os containers e executar a aplicação.
-5. A api estará rodando em ```http://localhost:3333```
+5. A api estará rodando em ```http://localhost:3333``` e as alterações que você fizer no código serão aplicadas no container, a pasta do projeto é o volume do node.
+6. O PGadmin estará rodando em ```http://localhost:8000```, com ele você pode acessar o banco de dados do Postgres, o volume dos dados do banco de dados estará salvo no caminho: ```.docker/dbdata``` na pasta do seu projeto.
+7. O openapi SWAGGER estará rodando em ```http://localhost:8001```, aqui estará a documentação da api e você pode testar as rotas aqui, comece cadastrando um usuário para pode iniciar uma sessão e gerar o token de autenticação das outras rotas, lembre se de copiar o token e colar no botão de Authorization para liberar as rotas, o token é válido por 1 dia, o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/.docker/doc/openapi.yaml) esta no caminho: ```.docker/doc/openapi.yaml``` na pasta do projeto.
+8. Para acessar o cache salvo pelo [Redis](https://github.com/bolatechproducoes/api-vendas#redis) você pode utilizar [estas duas opções](https://github.com/bolatechproducoes/api-vendas#alternativas-ao-redisinsight).
+9. Você pode rodar os testes do Jest executando na pasta do projeto o comando ```yarn test```, depois você pode acessar o relatório de cobertura dos testes abrindo o arquivo ```/coverage/lcov-report/index.html``` no seu navegador.
 
 * Para rodar a api no seu sistema sem utilizar o docker-compose:
 
@@ -24,7 +28,7 @@
 
 ## Como testar a api
 
-* Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens. (Lembre-se de adicionar sua url de produção no arquivo openapi.yaml para poder testa-la em produção)
+* Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/.docker/doc/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens. (Lembre-se de adicionar sua url de produção no arquivo openapi.yaml para poder testa-la em produção)
 * Você pode criar uma build de produção com o babel utilizando o comando ```yarn build```, para testar/utilizar a build você deve alterar os caminhos do arquivo ```ormconfig.json``` trocando ```src/``` por ```dist/``` e o final dos arquivos de ```.ts``` para ```.js```. O comando para executar a build de produção do projeto é ```node dist/shared/infra/http/server.js```.
 
 ## PostgreSQL

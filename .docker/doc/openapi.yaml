@@ -1,0 +1,984 @@
+openapi: 3.0.1
+info:
+  title: API de Vendas
+  description: API do curso de TypeORM com PostgreSql e Typescript do prof Jorge Aluizio na Udemy.
+  version: 0.0.1
+  termsOfService: https://www.udemy.com/course/api-restful-de-vendas/
+  contact:
+    name: Curso na Udemy
+    url: https://www.udemy.com/course/api-restful-de-vendas/
+  license:
+    name: Udemy
+    url: https://www.udemy.com/course/api-restful-de-vendas/
+externalDocs:
+  description: Documentação Externa da API
+  url: https://github.com/aluiziodeveloper/api-vendas
+servers:
+- url: http://localhost:3333
+  description: Api de Desenvolvimento
+paths:
+  /sessions:
+    post:
+      summary: Gera o token de login
+      description: "Através desse endpoint é gerado o token de login na aplicação"
+      tags:
+      - "SESSIONS - Login"
+      requestBody:
+        description: "Utilize um email e password cadastrado para gerar o token de login"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                      type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      avatar:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /users:
+    post:
+      summary: Cadastra um usuário na aplicação
+      description: "Através desse endpoint é cadastrado um usuário na aplicação"
+      tags:
+      - "USERS"
+      requestBody:
+        description: "Forneça o nome, email e senha para cadastrar um novo usuário"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    id:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    get:
+      security:
+      - auth: []
+      summary: Consulta todos usuários cadastrados na aplicação
+      tags:
+      - "USERS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    avatar:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                    avatar_url:
+                      type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /users/avatar:
+    patch:
+      summary: Envio de imagem de avatar
+      security:
+      - auth: []
+      tags:
+      - "USERS"
+      requestBody:
+        description: "Arquivo de imagem"
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /profile:
+    get:
+      security:
+      - auth: []
+      summary: Consulta os dados do usuário logado na aplicação
+      tags:
+      - "PROFILE"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    avatar:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    put:
+      summary: Atualiza os dados do usuário na aplicação
+      description: "Através desse endpoint é atualizado os dados do usuário na aplicação"
+      tags:
+      - "PROFILE"
+      security:
+      - auth: []
+      requestBody:
+        description: "Pode alterar os dados do usuário (Para alterar a senha é preciso confirmar a senha nova)"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+                old_password:
+                  type: string
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    avatar:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /password/forgot:
+    post:
+      summary: Envia um email para redefinição de senha
+      description: "Através desse endpoint é envido um email para o usuário"
+      tags:
+      - "PASSWORD"
+      security:
+      - auth: []
+      requestBody:
+        description: "Envia um email de redefinição de senha para o email do usuário (simula no Ethereal Mail) e gera um token válido por 2 horas (Link para o simulador de email com o token disponivel no console após envio da requisição e retorno 204)"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        204:
+          description: "Sucesso"
+          content:
+            status:
+              example: "No body returned for response"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /password/reset:
+    post:
+      summary: Redefine a senha do usuário
+      description: "Através desse endpoint é redefinida a senha do usuário"
+      tags:
+      - "PASSWORD"
+      security:
+      - auth: []
+      requestBody:
+        description: "Redefine a senha do usuário utilizando o token que foi gerado no envio do email"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+      responses:
+        204:
+          description: "Sucesso"
+          content:
+            status:
+              example: "No body returned for response"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /customers:
+    post:
+      summary: Cadastra um cliente na aplicação
+      description: "Através desse endpoint é cadastrado um cliente na aplicação"
+      security:
+      - auth: []
+      tags:
+      - "CUSTOMERS"
+      requestBody:
+        description: "Forneça o nome e email para cadastrar um novo cliente"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    id:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    get:
+      security:
+      - auth: []
+      summary: Consulta todos os clientes cadastrados na aplicação
+      tags:
+      - "CUSTOMERS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /customers/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      security:
+      - auth: []
+      summary: Consulta um clientes cadastrados na aplicação pelo ID
+      tags:
+      - "CUSTOMERS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    put:
+      security:
+      - auth: []
+      summary: Atualiza os dados de um clientes cadastrado na aplicação pelo ID
+      tags:
+      - "CUSTOMERS"
+      requestBody:
+        description: "Forneça o nome e email do cliente a ser atualizado"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    delete:
+      security:
+      - auth: []
+      summary: Apaga os dados de um clientes cadastrado na aplicação pelo ID
+      tags:
+      - "CUSTOMERS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/array:
+              schema:
+                type: array
+                items:
+                  type: array
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /products:
+    post:
+      summary: Cadastra um produto na aplicação
+      description: "Através desse endpoint é cadastrado um produto na aplicação"
+      security:
+      - auth: []
+      tags:
+      - "PRODUCTS"
+      requestBody:
+        description: "Forneça o nome, preço e quantidade para cadastrar um novo produto"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                quantity:
+                  type: number
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                    name:
+                      type: string
+                    price:
+                      type: number
+                    quantity:
+                      type: number
+                    id:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    get:
+      security:
+      - auth: []
+      summary: Consulta todos os produtos cadastrados na aplicação
+      tags:
+      - "PRODUCTS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    price:
+                      type: string
+                    quantity:
+                      type: number
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /products/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      security:
+      - auth: []
+      summary: Consulta um produto cadastrados na aplicação pelo ID
+      tags:
+      - "PRODUCTS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  price:
+                    type: number
+                  quantity:
+                    type: number
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    put:
+      security:
+      - auth: []
+      summary: Atualiza os dados de um produto cadastrado na aplicação pelo ID
+      tags:
+      - "PRODUCTS"
+      requestBody:
+        description: "Forneça o nome, preço e quantidade do cliente a ser atualizado"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                quantity:
+                  type: number
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  price:
+                    type: number
+                  quantity:
+                    type: number
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+    delete:
+      security:
+      - auth: []
+      summary: Apaga os dados de um produto cadastrado na aplicação pelo ID
+      tags:
+      - "PRODUCTS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/array:
+              schema:
+                type: array
+                items:
+                  type: array
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /orders:
+    post:
+      summary: Cadastra um pedido de produtos de um cliente
+      description: "Através desse endpoint é cadastrado um pedido de cliente com os produtos"
+      security:
+      - auth: []
+      tags:
+      - "ORDERS"
+      requestBody:
+        description: "Forneça o id do cliente e os ids dos produtos para criar um pedido"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      quantity:
+                        type: number
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                  order_products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        product_id:
+                          type: string
+                        price:
+                          type: string
+                        quantity:
+                          type: number
+                        order_id:
+                          type: string
+                        id:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+  /orders/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      security:
+      - auth: []
+      summary: Consulta um pedido cadastrados na aplicação pelo ID
+      tags:
+      - "ORDERS"
+      responses:
+        200:
+          description: "Sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  order_products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        product_id:
+                          type: string
+                        price:
+                          type: string
+                        quantity:
+                          type: number
+                        order_id:
+                          type: string
+                        id:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                  customer:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        404:
+          $ref: "#/components/responses/ErrorResponse"
+        500:
+          $ref: "#/components/responses/ServerErrorResponse"
+components:
+  schemas:
+    users:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        avatar:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    users_tokens:
+      type: object
+      properties:
+        id:
+          type: string
+        token:
+          type: string
+        user_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    customers:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    products:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: string
+        quantity:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    orders:
+      type: object
+      properties:
+        id:
+          type: string
+        customer_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    orders_products:
+      type: object
+      properties:
+        id:
+          type: string
+        price:
+          type: string
+        quantity:
+          type: string
+        order_id:
+          type: string
+        product_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    UnauthorizedResponse:
+      description: "Não autorizado"
+      content:
+        aplication/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  example: "Token de login Inválido"
+    ErrorResponse:
+      description: Página não encontrada
+      content:
+        status:
+          example: "Page Not Found"
+    BadRequestResponse:
+      description: Id correspondente não encontrado na tabela
+      content:
+        aplication/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  example: "Erro nos dados fornecidos na requisição"
+    ServerErrorResponse:
+      description: Erro interno do servidor
+      content:
+        status:
+          example: "Internal Server Error"

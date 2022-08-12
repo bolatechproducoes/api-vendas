@@ -43,3 +43,13 @@ services:
       - "8000:80"
     depends_on:
       - db
+
+  swagger-ui:
+   image: swaggerapi/swagger-ui
+   container_name: swagger_ui_container
+   ports:
+      - "8001:8080"
+   volumes:
+      - .docker/doc:/usr/share/nginx/html/doc
+   environment:
+      API_URL: /doc/openapi.yaml
