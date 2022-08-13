@@ -1,6 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ICreateCustomer } from '../../models/ICreateCustomer';
-import { ICustomersRepository } from '../../repositories/ICustomersRepository';
+import { ICustomerPaginate } from '../../models/ICustomerPaginate';
+import {
+  ICustomersRepository,
+  SearchParams,
+} from '../../repositories/ICustomersRepository';
 import Customer from '../../../infra/typeorm/entities/Customer';
 
 class FakeCustomersRepository implements ICustomersRepository {
@@ -32,22 +36,42 @@ class FakeCustomersRepository implements ICustomersRepository {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   public async remove(customer: Customer): Promise<void> {}
 
-  public async findAll(): Promise<Customer[] | undefined> {
-    return undefined;
+  public async findAll({
+    page,
+    skip,
+    take,
+  }: SearchParams): Promise<ICustomerPaginate> {
+    const customer = new Customer();
+    const paginate = {
+      per_page: 2,
+      total: 2,
+      current_page: 2,
+      data: [customer],
+    };
+    return paginate;
   }
 
-  public async findByName(name: string): Promise<Customer | undefined> {
+  public async findByName(name: string): Promise<Customer | null> {
     const customer = this.customers.find(customer => customer.name === name);
+    if (customer === undefined) {
+      return null;
+    }
     return customer;
   }
 
-  public async findById(id: string): Promise<Customer | undefined> {
+  public async findById(id: string): Promise<Customer | null> {
     const customer = this.customers.find(customer => customer.id === id);
+    if (customer === undefined) {
+      return null;
+    }
     return customer;
   }
 
-  public async findByEmail(email: string): Promise<Customer | undefined> {
+  public async findByEmail(email: string): Promise<Customer | null> {
     const customer = this.customers.find(customer => customer.email === email);
+    if (customer === undefined) {
+      return null;
+    }
     return customer;
   }
 }

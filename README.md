@@ -22,13 +22,14 @@
 3. Executar as [migrações das tabelas](https://github.com/bolatechproducoes/api-vendas#comandos-cli).
 4. Executar o container do [Redis](https://github.com/bolatechproducoes/api-vendas#redis).
 5. Alterar o arquivo ```.env.example``` para: ```.env```.
-6. Executar o comando: ```yarn dev```
-7. A api estará rodando em ```http://localhost:3333```
+6. Para funcionar voce precisa alterar a propriedade ```host``` de 'db' para 'localhost' no arquivo ```/src/shared/infra/typeorm/index.ts```.
+7. Executar o comando: ```yarn dev```
+8. A api estará rodando em ```http://localhost:3333```
 
 ## Como testar a api
 
 * Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/.docker/doc/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens. (Lembre-se de adicionar sua url de produção no arquivo openapi.yaml para poder testa-la em produção)
-* Você pode criar uma build de produção com o babel utilizando o comando ```yarn build```. O comando para executar a build de produção do projeto é ```node dist/shared/infra/http/server.js```.
+* Você pode criar uma build de produção com o babel utilizando o comando ```yarn build```. O comando para executar a build de produção do projeto é ```node dist/shared/infra/http/server.js```, para funcionar voce precisa (antes de fazer a build) alterar a propriedade ```host``` de 'db' para 'localhost' no arquivo ```/src/shared/infra/typeorm/index.ts```.
 
 ## PostgreSQL
 
