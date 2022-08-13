@@ -2,7 +2,6 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { errors } from 'celebrate';
-import { pagination } from 'typeorm-pagination';
 import routes from './routes';
 import AppError from '../../../shared/errors/AppError';
 import '../../../shared/infra/typeorm';
@@ -17,7 +16,6 @@ app.use(express.json());
 
 app.use(rateLimiter);
 
-app.use(pagination);
 app.use('/files', express.static(uploadConfig.directory));
 //Habilita as rotas definidas em src/shared/http/routes/index.ts
 app.use(routes);
