@@ -48,6 +48,8 @@ class FakeCustomersRepository implements ICustomersRepository {
       current_page: 2,
       data: [customer],
     };
+
+    paginate.per_page = 3;
     return paginate;
   }
 
