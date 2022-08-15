@@ -66,6 +66,10 @@ class FakeCustomersRepository implements ICustomersRepository {
     if (customer === undefined) {
       return null;
     }
+    if (customer.name === 'none') {
+      return null;
+    }
+
     return customer;
   }
 

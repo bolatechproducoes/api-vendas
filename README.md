@@ -13,23 +13,23 @@
 5. O PGadmin estará rodando em ```http://localhost:8000```, com ele você pode acessar o banco de dados do Postgres, utilize o email 'admin@admin.com' e a senha 'admin' para acessa-lo, clique no icone 'Add New Server', na aba 'General' preencha o campo 'name' com o nome 'Postgres', na aba 'Connection' preencha o 'Hostname/Adress' com o nome 'bd', preencha o campo 'Username' com o valor 'postgres' e preencha o campo 'Password' com o valor 'docker', marque a opção 'Save password' e clique no botão 'Save', agora você pode acessar os dados do banco de dados da api por aqui, o volume dos dados do banco de dados estará salvo no caminho: ```.docker/dbdata``` na pasta do seu projeto, ou seja, você pode destruir os containers do Docker que os dados continuarão salvos, você também pode acessar o shell do banco de dados executando o comando ```docker-compose exec db bash```.
 6. O openapi SWAGGER estará rodando em ```http://localhost:8001```, aqui estará a documentação da api e você pode testar as rotas aqui, comece cadastrando um usuário para pode iniciar uma sessão e gerar o token de autenticação das outras rotas, lembre se de copiar o token e colar no botão de Authorization para liberar as rotas, o token é válido por 1 dia, o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/.docker/doc/openapi.yaml) esta no caminho: ```.docker/doc/openapi.yaml``` na pasta do projeto.
 7. Para acessar o cache salvo pelo [Redis](https://github.com/bolatechproducoes/api-vendas#redis) você pode utilizar [estas duas opções](https://github.com/bolatechproducoes/api-vendas#alternativas-ao-redisinsight), você pode utilizar o comando: ```docker-compose exec redis bash``` para acessar o shell do container do Redis.
-8. Você pode rodar os testes do Jest executando na pasta do projeto o comando: ```docker-compose exec app yarn test```, depois você pode acessar o relatório de cobertura dos testes abrindo o arquivo ```/coverage/lcov-report/index.html``` no seu navegador.
+8. Você pode rodar os testes do Jest executando na pasta do projeto o comando: ```docker-compose exec app npm run test```, depois você pode acessar o relatório de cobertura dos testes abrindo o arquivo ```/coverage/lcov-report/index.html``` no seu navegador.
 
 * Para rodar a api no seu sistema sem utilizar o docker-compose:
 
 1. Executar o container do [Postgres](https://github.com/bolatechproducoes/api-vendas#postgresql), configurar o bd apivendas e instalar a extensão do uuid no postgres.
-2. Executar o comando: ```yarn```
-3. Executar as [migrações das tabelas](https://github.com/bolatechproducoes/api-vendas#comandos-cli).
+2. Executar o comando: ```npm install```
+3. Executar as [migrações das tabelas](https://github.com/bolatechproducoes/api-vendas#comandos-cli) com o comando ```npm run -- -d src/shared/infra/typeorm/index.ts typeorm migration:run``` executado no terminal na pasta do projeto.
 4. Executar o container do [Redis](https://github.com/bolatechproducoes/api-vendas#redis).
 5. Alterar o arquivo ```.env.example``` para: ```.env```.
 6. Para funcionar voce precisa alterar a propriedade ```host``` de 'db' para 'localhost' no arquivo ```/src/shared/infra/typeorm/index.ts```.
-7. Executar o comando: ```yarn dev```
+7. Executar o comando: ```npm run dev```
 8. A api estará rodando em ```http://localhost:3333```
 
 ## Como testar a api
 
 * Você pode testar a api utilizando o [Swagger](https://swagger.io/) executando o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/.docker/doc/openapi.yaml) com a extensão: [OpenApi(Swagger)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) do VsCode (ou no próprio Swagger) ou utilizar o Insomnia ou PostMan configurando as rotas e tokens. (Lembre-se de adicionar sua url de produção no arquivo openapi.yaml para poder testa-la em produção)
-* Você pode criar uma build de produção com o babel utilizando o comando ```yarn build```. O comando para executar a build de produção do projeto é ```node dist/shared/infra/http/server.js```, para funcionar voce precisa (antes de fazer a build) alterar a propriedade ```host``` de 'db' para 'localhost' no arquivo ```/src/shared/infra/typeorm/index.ts```.
+* Você pode criar uma build de produção com o babel utilizando o comando ```npm run build```. O comando para executar a build de produção do projeto é ```node dist/shared/infra/http/server.js```, para funcionar voce precisa (antes de fazer a build) alterar a propriedade ```host``` de 'db' para 'localhost' no arquivo ```/src/shared/infra/typeorm/index.ts```.
 
 ## PostgreSQL
 
@@ -39,7 +39,7 @@
 * Acessar o banco de dados com o usuario postgres e a senha docker e criar o banco de dados apivendas.
 
 * Rodar o comando de migrações do typeorm:
-```yarn typeorm migration:run```
+```npm run typeorm migration:run```
 
 * Comando para iniciar o container quando reiniciar o pc:
 ```docker start postgres```
@@ -120,22 +120,22 @@ https://typeorm.io/
 ## Comandos CLI
 
 * Comando para criar uma migração com o TypeORM no TypeORM 2.x:
-```yarn typeorm migration:create -n NOMEDAMIGRAÇÂO```
+```npm run typeorm migration:create -n NOMEDAMIGRAÇÂO```
 
 * Comando para criar uma migração com o TypeORM no TypeORM 3.x:
-```yarn typeorm migration:create ENDERECODAMIGRACAO NOMEDATABELA```
+```npm run typeorm migration:create ENDERECODAMIGRACAO NOMEDATABELA```
 
 * Comando para executar migração no TypeORM no TypeORM 2.x:
-```yarn typeorm migration:run```
+```npm run typeorm migration:run```
 
 * Comando para executar migração no TypeORM no TypeORM 3.x:
-```yarn -- -d ENDERECODOARQUIVODECONFIGDASMIGRACOES typeorm migration:run```
+```npm run -- -d ENDERECODOARQUIVODECONFIGDASMIGRACOES typeorm migration:run```
 
 * Comando para desfazer uma migração:
-```yarn typeorm migration:revert```
+```npm run typeorm migration:revert```
 
 * Comando para mostrar as migrações:
-```yarn typeorm migration:show```
+```npm run typeorm migration:show```
 
 * Comando para rodar as migrações no servidor de produção:
 ```./node_modules/.bin/typeorm migration:run```
@@ -146,9 +146,9 @@ https://typeorm.io/
 * É necessário importar todas as entidades e migrações
 * Alterar o arquivo server.ts
 * Nas migrações é necessário incluir o parametro --dataSource CAMINHODOARQUIVO (flag -d)
-* Exemplo: ```yarn -- -d src/shared/infra/typeorm/index.ts typeorm migration:run```
-* Para criar uma nova migração o comando é: ```yarn typeorm migration:create ENDERECODAMIGRACAO NOMEDATABELA```
-exemplo: ```yarn typeorm migration:create src/shared/infra/typeorm/migrations/CreateMyNewTable```
+* Exemplo: ```npm run -- -d src/shared/infra/typeorm/index.ts typeorm migration:run```
+* Para criar uma nova migração o comando é: ```npm run typeorm migration:create ENDERECODAMIGRACAO NOMEDATABELA```
+exemplo: ```npm run typeorm migration:create src/shared/infra/typeorm/migrations/CreateMyNewTable```
 * A forma de escrever o arquivo de migração continua a mesma
 * Os repositórios também precisam ser refatorados
 
