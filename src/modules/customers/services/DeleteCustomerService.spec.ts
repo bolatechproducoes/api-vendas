@@ -30,7 +30,7 @@ describe('deleteCustomer', () => {
     });
 
     expect(await deleteCustomer.execute(customer)).rejects.toBeInstanceOf(
-      'Customer not found.',
+      AppError,
     );
   });
 });
