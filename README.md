@@ -4,6 +4,8 @@
 ### Para baixar/clonar o projeto:
 ```git clone https://github.com/bolatechproducoes/api-vendas.git .```
 
+Se você estiver utilizando o windows utilize o branch configurado para windows: ```https://github.com/bolatechproducoes/api-vendas/tree/windows``` (se voce estiver rodando no WSL2 dentro de uma instalação Ubuntu 20.04lts utilize o branch master)
+
 * Para rodar o projeto pelo docker-compose:
 
 1. Depois de clonar o projeto, executar no terminal na pasta do projeto o comando: ```chmod +x .docker/entrypoint.sh```
