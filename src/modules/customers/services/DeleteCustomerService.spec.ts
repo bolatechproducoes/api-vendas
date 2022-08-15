@@ -29,7 +29,7 @@ describe('deleteCustomer', () => {
       email: 'teste@email.com',
     });
 
-    expect(await deleteCustomer.execute(customer)).rejects.toThrow(
+    expect(await deleteCustomer.execute(customer)).rejects.toBeInstanceOf(
       'Customer not found.',
     );
   });
