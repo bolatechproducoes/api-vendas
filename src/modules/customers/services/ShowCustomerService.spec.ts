@@ -1,35 +1,36 @@
 import 'reflect-metadata';
 import CreateCustomerService from './CreateCustomerService';
-import DeleteCustomerService from './DeleteCustomerService';
+import ShowCustomerService from './ShowCustomerService';
 import FakeCustomersRepository from '../domain/repositories/fakes/FakeCustomersRepository';
 import AppError from '../../../shared/errors/AppError';
 
 let fakeCustomersRepository: FakeCustomersRepository;
 let createCustomer: CreateCustomerService;
-let deleteCustomer: DeleteCustomerService;
+let showCustomer: ShowCustomerService;
 
-describe('deleteCustomer', () => {
+describe('showCustomers', () => {
   beforeEach(() => {
     fakeCustomersRepository = new FakeCustomersRepository();
     createCustomer = new CreateCustomerService(fakeCustomersRepository);
-    deleteCustomer = new DeleteCustomerService(fakeCustomersRepository);
+    showCustomer = new ShowCustomerService(fakeCustomersRepository);
   });
-  it('should be delete a customer', async () => {
+  it('should be able to list customer data finding by id', async () => {
     const customer = await createCustomer.execute({
       name: 'Gustavo',
       email: 'teste@email.com',
     });
 
-    expect(await deleteCustomer.execute(customer)).toBe(undefined);
+    expect(await showCustomer.execute({ id: customer.id })).toHaveProperty(
+      'name',
+    );
   });
-
-  it('should not be able delete non exitent customer', async () => {
+  it('should not be able show a non exitent customer', async () => {
     const customer = await createCustomer.execute({
       name: 'none',
       email: 'teste2@email.com',
     });
 
-    await expect(deleteCustomer.execute(customer)).rejects.toBeInstanceOf(
+    await expect(showCustomer.execute(customer)).rejects.toBeInstanceOf(
       AppError,
     );
   });
