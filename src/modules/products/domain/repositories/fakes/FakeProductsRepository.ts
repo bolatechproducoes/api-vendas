@@ -71,6 +71,9 @@ class ProductsRepository implements IProductsRepository {
     if (product.name === 'none') {
       return null;
     }
+    if (product.id === 'nada') {
+      return null;
+    }
 
     return product;
   }
