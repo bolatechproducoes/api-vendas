@@ -48,11 +48,16 @@ class ProductsRepository implements IProductsRepository {
   }
 
   public async findByName(name: string): Promise<Product | null> {
+    const product1 = new Product();
+
+    product1.id = 'teste';
+    product1.name = 'none';
+    product1.price = 10;
+    product1.quantity = 10;
+
+    this.products = [product1];
     const product = this.products.find(product => product.name === name);
     if (product === undefined) {
-      return null;
-    }
-    if (product.name === 'none') {
       return null;
     }
     return product;
