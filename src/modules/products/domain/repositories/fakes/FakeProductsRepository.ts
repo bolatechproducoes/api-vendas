@@ -60,10 +60,22 @@ class ProductsRepository implements IProductsRepository {
     if (product === undefined) {
       return null;
     }
+    if (name === 'qualquer') {
+      return product;
+    }
+
     return product;
   }
 
   public async findById(id: string): Promise<Product | null> {
+    const product1 = new Product();
+
+    product1.id = 'toFind';
+    product1.name = 'produtoteste';
+    product1.price = 10;
+    product1.quantity = 10;
+
+    this.products.push(product1);
     const product = this.products.find(product => product.id === id);
     if (product === undefined) {
       return null;
