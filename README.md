@@ -16,7 +16,7 @@ Se você estiver utilizando o windows utilize o branch configurado para windows:
 6. O openapi SWAGGER estará rodando em ```http://localhost:8001```, aqui estará a documentação da api e você pode testar as rotas aqui, comece cadastrando um usuário para pode iniciar uma sessão e gerar o token de autenticação das outras rotas, lembre se de copiar o token e colar no botão de Authorization para liberar as rotas, o token é válido por 1 dia, o arquivo [openapi.yaml](https://github.com/bolatechproducoes/api-vendas/blob/master/.docker/doc/openapi.yaml) esta no caminho: ```.docker/doc/openapi.yaml``` na pasta do projeto.
 ![image-openapi-swagger](https://github.com/bolatechproducoes/api-vendas/blob/master/diagramas/swagger-api-vendas.jpg)
 7. Para acessar o cache salvo pelo [Redis](https://github.com/bolatechproducoes/api-vendas#redis) você pode utilizar [estas duas opções](https://github.com/bolatechproducoes/api-vendas#alternativas-ao-redisinsight), você pode utilizar o comando: ```docker-compose exec redis bash``` para acessar o shell do container do Redis.
-8. Você pode rodar os testes do Jest executando na pasta do projeto o comando: ```docker-compose exec app npm run test```, depois você pode acessar o relatório de cobertura dos testes abrindo o arquivo ```/coverage/lcov-report/index.html``` no seu navegador.
+8. Você pode rodar os testes do Jest executando na pasta do projeto o comando: ```docker-compose exec app npm run test```, (o docker-compose up deve estar rodando) depois você pode acessar o relatório de cobertura dos testes abrindo o arquivo ```/coverage/lcov-report/index.html``` no seu navegador.
 
 * Para rodar a api no seu sistema sem utilizar o docker-compose:
 
