@@ -3,7 +3,6 @@ import CreateUserService from './CreateUserService';
 import ListUserService from './ListUserService';
 import FakeUsersRepository from '../domain/repositories/fakes/FakeUserRepository';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
-import User from '../infra/typeorm/entities/User';
 
 let fakeUsersRepository: FakeUsersRepository;
 let createUser: CreateUserService;
