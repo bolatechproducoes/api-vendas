@@ -1,30 +1,28 @@
 import 'reflect-metadata';
+import ListProductService from './ListProductService';
 import CreateProductService from './CreateProductService';
 import FakeProductsRepository from '../domain/repositories/fakes/FakeProductsRepository';
-import AppError from '../../../shared/errors/AppError';
+import Product from '../infra/typeorm/entities/Product';
 
 let fakeProductsRepository: FakeProductsRepository;
+let listProduct: ListProductService;
 let createProduct: CreateProductService;
 
-describe('createProduct - Redis Cache Connection', () => {
+describe('listProducts - Use Redis Cache', () => {
   beforeEach(() => {
     fakeProductsRepository = new FakeProductsRepository();
+    listProduct = new ListProductService(fakeProductsRepository);
     createProduct = new CreateProductService(fakeProductsRepository);
   });
-
-  it('should be able to create a new product', async () => {
+  it('should be able to list products', async () => {
     const product = await createProduct.execute({
       name: 'teste',
       price: 10,
       quantity: 10,
     });
-
-    expect(product).toHaveProperty('name');
-  });
-
-  it('should not be able to create a new product with the same name a existent product', async () => {
-    await expect(
-      createProduct.execute({ name: 'none', price: 10, quantity: 10 }),
-    ).rejects.toBeInstanceOf(AppError);
+    expect(await listProduct.execute()).toEqual([
+      { id: 'teste', name: 'none', price: 10, quantity: 10 } as Product,
+      { name: 'produtoteste', price: 10, quantity: 10 } as Product,
+    ]);
   });
 });

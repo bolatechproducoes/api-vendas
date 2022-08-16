@@ -82,8 +82,6 @@ class ProductsRepository implements IProductsRepository {
     product1.price = 10;
     product1.quantity = 10;
 
-    const productsList = this.products.push(product1);
-
     return this.products;
   }
 
