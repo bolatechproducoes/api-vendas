@@ -87,8 +87,7 @@ https://github.com/qishibo/AnotherRedisDesktopManager
 * Configuração para acessar o container em localhost:
 ![configuração de acesso another redis](https://github.com/bolatechproducoes/api-vendas/blob/master/diagramas/another-redis-config-connection.png)
 
-* Comando para instalar no Ubuntu:
-```sudo snap install another-redis-desktop-manager```
+* Comandos para instalar no Ubuntu:```sudo snap connect another-redis-desktop-manager:ssh-keys``` para liberar as chaves de permissão ao repositório e: ```sudo snap install another-redis-desktop-manager``` para instalar a aplicação.
 
 2. **Utilizar o terminal para acessar o container:**
 * Comando para acessar o terminal do container redis:
