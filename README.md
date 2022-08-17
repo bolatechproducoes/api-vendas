@@ -44,7 +44,7 @@ Se você estiver utilizando o windows utilize o branch configurado para windows:
 * Acessar o banco de dados com o usuario postgres e a senha docker e criar o banco de dados apivendas.
 
 * Rodar o comando de migrações do typeorm:
-```npm run typeorm migration:run```
+```npm run typeorm -- -d src/shared/infra/typeorm/index.ts migration:run```
 
 * Comando para iniciar o container quando reiniciar o pc:
 ```docker start postgres```
