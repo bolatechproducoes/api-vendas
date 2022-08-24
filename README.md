@@ -151,7 +151,7 @@ https://typeorm.io/
 * É necessário importar todas as entidades e migrações
 * Alterar o arquivo server.ts
 * Nas migrações é necessário incluir o parametro --dataSource CAMINHODOARQUIVO (flag -d)
-* Exemplo: ```npm run -- -d src/shared/infra/typeorm/index.ts typeorm migration:run```
+* Exemplo: ```npm run typeorm -- -d src/shared/infra/typeorm/index.ts migration:run```
 * Para criar uma nova migração o comando é: ```npm run typeorm migration:create ENDERECODAMIGRACAO NOMEDATABELA```
 exemplo: ```npm run typeorm migration:create src/shared/infra/typeorm/migrations/CreateMyNewTable```
 * A forma de escrever o arquivo de migração continua a mesma
